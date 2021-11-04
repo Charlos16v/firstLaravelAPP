@@ -7,11 +7,12 @@ use App\Models\Car;
 
 
 Route::get('/', function () {
-    $corrado = new Car();
-    $corrado-> color = "red";
-    $corrado-> type = "volkswagen";
-
     // $cars = DB::select('select * from car');
     $cars = Car::all();
     return $cars;
+});
+
+Route::get('/car/{id}', function ($id) {
+    $result = Car::find($id);
+    return $result;
 });
