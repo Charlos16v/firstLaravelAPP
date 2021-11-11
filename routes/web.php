@@ -12,7 +12,8 @@ Route::get('/', function () {
     return $cars;
 });
 
-Route::get('/car/{id}', function ($id) {
+// Parametro id no obligatorio por defecto valor 1.
+Route::get('/car/{id?}', function ($id = 1) {
     $result = Car::find($id);
     return $result;
 });
