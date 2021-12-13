@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Car;
 use Illuminate\Support\Facades\Request;
 
+
+
 Route::get('/', function () {
     // $cars = DB::select('select * from car');
     $cars = Car::all();
@@ -16,7 +18,7 @@ Route::get('/', function () {
 Route::get('/cars/{id?}', function ($id = 1) {
     $result = Car::find($id);
     return $result;
-});
+}) -> middleware('prueba');
 
 Route::post('/cars', function (Request $request) {
     return $request->request->all();
