@@ -1,25 +1,24 @@
 <?php
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
-use App\Models\Car;
-use Illuminate\Support\Facades\Request;
 
-
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', function () {
-    // $cars = DB::select('select * from car');
-    $cars = Car::all();
-    return $cars;
+    return view('welcome');
 });
 
-// Parametro id no obligatorio por defecto valor 1.
-Route::get('/cars/{id?}', function ($id = 1) {
-    $result = Car::find($id);
-    return $result;
-}) -> middleware('prueba');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::post('/cars', function (Request $request) {
-    return $request->request->all();
-});
+require __DIR__.'/auth.php';
